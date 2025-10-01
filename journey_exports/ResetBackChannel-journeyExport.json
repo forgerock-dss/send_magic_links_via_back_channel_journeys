@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "origin": "https://openam-<tenant>/platform/?realm=alpha#/journeys/ResetBackChannel",
+    "exportedBy": "Ping PS",
+    "exportDate": "2025-10-01T11:34:08.627Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "ResetBackChannel"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "ResetBackChannel": {
+      "tree": {
+        "_id": "ResetBackChannel",
+        "_rev": "2043228414",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "b7c2ec28-88d1-402c-aa04-a5d510b0a85b",
+        "innerTreeOnly": false,
+        "description": "Backchannel Journey",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "annotations": "{\"forNodes\":{},\"structural\":[{\"id\":\"48ce43e4-6ab4-446b-be26-0f79c7aae2ed\",\"text\":\"The Debugger Custom Node is intended for demo purposes only, to illustrate how nodeState is passed to the back-channel journey. It should be removed in non-demo environments.\",\"color\":\"yellow\",\"createdBy\":\"Darinder Shokar\",\"x\":155,\"y\":407.76666259765625,\"w\":229,\"h\":158},{\"id\":\"581128f1-69e1-4116-81ba-6f609784421b\",\"text\":\"The Display Username node ensures that this journey cannot be executed unless front-channel state is passed to it.\",\"color\":\"yellow\",\"createdBy\":\"Darinder Shokar\",\"x\":472,\"y\":410.76666259765625,\"w\":237,\"h\":153}]}"
+        },
+        "nodes": {
+          "168464e7-baa5-40d2-8cc7-62b0d92869f6": {
+            "connections": {
+              "outcome": "ae2f6e50-0eb7-4a09-9ebe-e9f788686000"
+            },
+            "displayName": "Page Node",
+            "nodeType": "PageNode",
+            "x": 479,
+            "y": 181.76666259765625
+          },
+          "ae2f6e50-0eb7-4a09-9ebe-e9f788686000": {
+            "connections": {
+              "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "PATCHED": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "displayName": "Patch Object",
+            "nodeType": "PatchObjectNode",
+            "x": 791,
+            "y": 235.76666259765625
+          },
+          "b7c2ec28-88d1-402c-aa04-a5d510b0a85b": {
+            "connections": {
+              "Next": "168464e7-baa5-40d2-8cc7-62b0d92869f6"
+            },
+            "displayName": "Debugger",
+            "nodeType": "designer-92e8ad0e3610449890fca904dce9bf3d",
+            "x": 178,
+            "y": 252.76666259765625
+          }
+        },
+        "staticNodes": {
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1233,
+            "y": 122
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1189,
+            "y": 501
+          },
+          "startNode": {
+            "x": 50,
+            "y": 250
+          }
+        }
+      },
+      "nodes": {
+        "168464e7-baa5-40d2-8cc7-62b0d92869f6": {
+          "_id": "168464e7-baa5-40d2-8cc7-62b0d92869f6",
+          "_rev": "-1607466511",
+          "nodes": [
+            {
+              "_id": "844d6336-61d4-4491-a922-059147faf15b",
+              "nodeType": "DisplayUserNameNode",
+              "displayName": "Display Username"
+            },
+            {
+              "_id": "7b95f4d0-636f-4faf-bdae-7bd018f777d5",
+              "nodeType": "ValidatedPasswordNode",
+              "displayName": "Platform Password"
+            }
+          ],
+          "pageDescription": {
+            "en": "Change password"
+          },
+          "pageHeader": {
+            "en": "Reset Password"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "ae2f6e50-0eb7-4a09-9ebe-e9f788686000": {
+          "_id": "ae2f6e50-0eb7-4a09-9ebe-e9f788686000",
+          "_rev": "432615784",
+          "identityResource": "managed/alpha_user",
+          "patchAsObject": false,
+          "ignoredFields": [],
+          "identityAttribute": "mail",
+          "_type": {
+            "_id": "PatchObjectNode",
+            "name": "Patch Object",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "PATCHED",
+              "displayName": "Patched"
+            },
+            {
+              "id": "FAILURE",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "b7c2ec28-88d1-402c-aa04-a5d510b0a85b": {
+          "_id": "b7c2ec28-88d1-402c-aa04-a5d510b0a85b",
+          "_rev": "1234662846",
+          "_type": {
+            "_id": "designer-92e8ad0e3610449890fca904dce9bf3d",
+            "name": "Debugger",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "Next",
+              "displayName": "Next"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "844d6336-61d4-4491-a922-059147faf15b": {
+          "_id": "844d6336-61d4-4491-a922-059147faf15b",
+          "_rev": "-1613686089",
+          "userName": "userName",
+          "identityAttribute": "mail",
+          "_type": {
+            "_id": "DisplayUserNameNode",
+            "name": "Display Username",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "7b95f4d0-636f-4faf-bdae-7bd018f777d5": {
+          "_id": "7b95f4d0-636f-4faf-bdae-7bd018f777d5",
+          "_rev": "783432118",
+          "passwordAttribute": "password",
+          "validateInput": true,
+          "_type": {
+            "_id": "ValidatedPasswordNode",
+            "name": "Platform Password",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {},
+      "emailTemplates": {},
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}

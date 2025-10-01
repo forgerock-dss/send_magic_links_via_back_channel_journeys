@@ -1,0 +1,412 @@
+{
+  "meta": {
+    "origin": "https://openam-<tenant>/platform/?realm=alpha#/journeys/ResetFrontChannel",
+    "exportedBy": "Ping PS",
+    "exportDate": "2025-10-01T11:07:02.630Z",
+    "exportTool": "platform-admin ui tree export",
+    "exportToolVersion": "1.0",
+    "treesSelectedForExport": [
+      "ResetFrontChannel"
+    ],
+    "innerTreesIncluded": []
+  },
+  "trees": {
+    "ResetFrontChannel": {
+      "tree": {
+        "_id": "ResetFrontChannel",
+        "_rev": "-1677053235",
+        "identityResource": "managed/alpha_user",
+        "entryNodeId": "fd1ee2f8-ba01-4f1a-89b8-ec8ca2de5860",
+        "innerTreeOnly": false,
+        "description": "Frontchannel journey",
+        "noSession": false,
+        "mustRun": false,
+        "enabled": true,
+        "transactionalOnly": false,
+        "uiConfig": {
+          "annotations": "{\"forNodes\":{},\"structural\":[{\"id\":\"0f722e1f-7443-4938-9010-8e20be35986e\",\"text\":\"These three nodes: \\n1.  Collects the mail attribute. \\n2 - Using the mail attribute get and set the username and _id attributes in sharedState.\\n3 - Set a sharedState attribute for downstream consumption by the back channel journey \\n\\n\",\"color\":\"yellow\",\"createdBy\":\"Darinder Shokar\",\"x\":118,\"y\":663.7666625976562,\"w\":309,\"h\":140},{\"id\":\"2164466c-3bce-4ad6-94b6-c490937dec38\",\"text\":\"A dummy email suspend node is used to display a no-button message to the user, ensuring consistent behaviour whether or not a valid email address is entered.\",\"color\":\"yellow\",\"createdBy\":\"Darinder Shokar\",\"x\":1149,\"y\":666.7666625976562,\"w\":307,\"h\":100},{\"id\":\"47beea51-bf55-4546-bd4d-63b0c3b2bffb\",\"text\":\"These three nodes perform the following actions:\\n\\t1.\\tInitialise the back-channel flow and target a specific journey.\\n\\t2.\\tSend the magic link to the user via a templated email, using a transactionId that matches the back-channel journey, and return to this journey with the suspendId to continue.\\n\\t3.\\tUse a back-channel status check node to poll until the back-channel journey successfully completes.\",\"color\":\"yellow\",\"createdBy\":\"Darinder Shokar\",\"x\":613,\"y\":659.7666625976562,\"w\":375,\"h\":181}]}"
+        },
+        "nodes": {
+          "0af8d2cd-e8e4-4e78-b2b8-336b5c614ec6": {
+            "x": 685,
+            "y": 478.76666259765625,
+            "connections": {
+              "created": "5648aff9-f28a-4247-b36a-cc5a67f97e4b",
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "unknown": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "BackChannelInitNode",
+            "displayName": "Back-channel Initialize"
+          },
+          "5648aff9-f28a-4247-b36a-cc5a67f97e4b": {
+            "x": 686,
+            "y": 331.76666259765625,
+            "connections": {
+              "Success": "a77c923f-4186-4c97-abf2-c56fed6b004e",
+              "Failed": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "ScriptedDecisionNode",
+            "displayName": "Back-channel Email Suspend"
+          },
+          "714d89d7-b3c4-4629-8a51-422314d2ee77": {
+            "x": 1186,
+            "y": 140.76666259765625,
+            "connections": {
+              "Success": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
+            },
+            "nodeType": "designer-d0a055acaedd486b91fa88eddc6fccdb",
+            "displayName": "User Message to Display"
+          },
+          "80fba87e-5147-428b-8366-fea7a31424b2": {
+            "x": 173,
+            "y": 293.76666259765625,
+            "connections": {
+              "false": "b669929c-5fed-45a7-9a86-c69f9e464b08",
+              "true": "8ebd5eb7-f370-46e6-a27b-0627b7f815b2"
+            },
+            "nodeType": "IdentifyExistingUserNode",
+            "displayName": "Identify Existing User"
+          },
+          "8ebd5eb7-f370-46e6-a27b-0627b7f815b2": {
+            "x": 145,
+            "y": 501.76666259765625,
+            "connections": {
+              "Next": "0af8d2cd-e8e4-4e78-b2b8-336b5c614ec6",
+              "Script Error": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "designer-c6e6d89db5a74c778ca464ccc38455ca",
+            "displayName": "Set BackChannel State Properties"
+          },
+          "a77c923f-4186-4c97-abf2-c56fed6b004e": {
+            "x": 688,
+            "y": 36.76666259765625,
+            "connections": {
+              "error": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "failure": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "inprogress": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "pending": "e301438c-0bd0-429c-ab0c-66126501069a",
+              "success": "714d89d7-b3c4-4629-8a51-422314d2ee77",
+              "unknown": "e301438c-0bd0-429c-ab0c-66126501069a"
+            },
+            "nodeType": "BackChannelStatusNode",
+            "displayName": "Back-channel Status"
+          },
+          "b669929c-5fed-45a7-9a86-c69f9e464b08": {
+            "x": 1194,
+            "y": 564.7666625976562,
+            "connections": {},
+            "nodeType": "EmailSuspendNode",
+            "displayName": "Email Suspend Node"
+          },
+          "fd1ee2f8-ba01-4f1a-89b8-ec8ca2de5860": {
+            "x": 174,
+            "y": 67.76666259765625,
+            "connections": {
+              "outcome": "80fba87e-5147-428b-8366-fea7a31424b2"
+            },
+            "nodeType": "PageNode",
+            "displayName": "Page Node"
+          }
+        },
+        "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 250
+          },
+          "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
+            "x": 1670,
+            "y": 147
+          },
+          "e301438c-0bd0-429c-ab0c-66126501069a": {
+            "x": 1670,
+            "y": 384
+          }
+        }
+      },
+      "nodes": {
+        "0af8d2cd-e8e4-4e78-b2b8-336b5c614ec6": {
+          "_id": "0af8d2cd-e8e4-4e78-b2b8-336b5c614ec6",
+          "_rev": "1338639816",
+          "redirectUrlType": "GET",
+          "usernameKey": "_id",
+          "dataKey": "backchannel:data",
+          "idType": "USER",
+          "tree": "ResetBackChannel",
+          "timeout": 3600,
+          "_type": {
+            "_id": "BackChannelInitNode",
+            "name": "Backchannel Initialize",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "created",
+              "displayName": "Created"
+            },
+            {
+              "id": "unknown",
+              "displayName": "Unknown Subject"
+            },
+            {
+              "id": "error",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "5648aff9-f28a-4247-b36a-cc5a67f97e4b": {
+          "_id": "5648aff9-f28a-4247-b36a-cc5a67f97e4b",
+          "_rev": "1667324686",
+          "script": "452a1b7e-fac2-4929-bcdc-a2835af2034a",
+          "outcomes": [
+            "Success",
+            "Failed"
+          ],
+          "outputs": [
+            "*"
+          ],
+          "inputs": [
+            "*"
+          ],
+          "_type": {
+            "_id": "ScriptedDecisionNode",
+            "name": "Scripted Decision",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "Success",
+              "displayName": "Success"
+            },
+            {
+              "id": "Failed",
+              "displayName": "Failed"
+            }
+          ]
+        },
+        "714d89d7-b3c4-4629-8a51-422314d2ee77": {
+          "_id": "714d89d7-b3c4-4629-8a51-422314d2ee77",
+          "_rev": "871097654",
+          "message": "Password successfully reset. Hit next to login.",
+          "_type": {
+            "_id": "designer-d0a055acaedd486b91fa88eddc6fccdb",
+            "name": "User Message to Display",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "Success",
+              "displayName": "Success"
+            }
+          ]
+        },
+        "80fba87e-5147-428b-8366-fea7a31424b2": {
+          "_id": "80fba87e-5147-428b-8366-fea7a31424b2",
+          "_rev": "-1242190649",
+          "identityAttribute": "mail",
+          "identifier": "userName",
+          "_type": {
+            "_id": "IdentifyExistingUserNode",
+            "name": "Identify Existing User",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "true",
+              "displayName": "True"
+            },
+            {
+              "id": "false",
+              "displayName": "False"
+            }
+          ]
+        },
+        "8ebd5eb7-f370-46e6-a27b-0627b7f815b2": {
+          "_id": "8ebd5eb7-f370-46e6-a27b-0627b7f815b2",
+          "_rev": "-1721445581",
+          "backChannelStateProperty": "backchannel:data",
+          "attributeListProperty": [
+            "_id",
+            "objectAttributes",
+            "username"
+          ],
+          "_type": {
+            "_id": "designer-c6e6d89db5a74c778ca464ccc38455ca",
+            "name": "Set BackChannel State Properties",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "Next",
+              "displayName": "Next"
+            },
+            {
+              "id": "Script Error",
+              "displayName": "Script Error"
+            }
+          ]
+        },
+        "a77c923f-4186-4c97-abf2-c56fed6b004e": {
+          "_id": "a77c923f-4186-4c97-abf2-c56fed6b004e",
+          "_rev": "-128481237",
+          "recordData": true,
+          "_type": {
+            "_id": "BackChannelStatusNode",
+            "name": "Backchannel Status",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "pending",
+              "displayName": "Pending"
+            },
+            {
+              "id": "inprogress",
+              "displayName": "In Progress"
+            },
+            {
+              "id": "success",
+              "displayName": "Success"
+            },
+            {
+              "id": "failure",
+              "displayName": "Failure"
+            },
+            {
+              "id": "unknown",
+              "displayName": "Unknown"
+            },
+            {
+              "id": "error",
+              "displayName": "Error"
+            }
+          ]
+        },
+        "b669929c-5fed-45a7-9a86-c69f9e464b08": {
+          "_id": "b669929c-5fed-45a7-9a86-c69f9e464b08",
+          "_rev": "-1829019317",
+          "emailSuspendMessage": {
+            "en": "If a user account exists, you’ll receive an email with a magic sign-in link. The link is valid for 1 hour."
+          },
+          "emailTemplateName": "changePassword",
+          "identityAttribute": "userName",
+          "suspendDuration": 60,
+          "emailAttribute": "dummy",
+          "objectLookup": false,
+          "_type": {
+            "_id": "EmailSuspendNode",
+            "name": "Email Suspend Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        },
+        "fd1ee2f8-ba01-4f1a-89b8-ec8ca2de5860": {
+          "_id": "fd1ee2f8-ba01-4f1a-89b8-ec8ca2de5860",
+          "_rev": "1983176167",
+          "nodes": [
+            {
+              "_id": "1bd0acbe-4526-47d7-8d9d-ee185ae32baa",
+              "nodeType": "AttributeCollectorNode",
+              "displayName": "Attribute Collector"
+            }
+          ],
+          "pageDescription": {
+            "en": "Enter your email address or <a href=\"#/service/Login\">Sign in</a>"
+          },
+          "pageHeader": {
+            "en": "Reset Password"
+          },
+          "_type": {
+            "_id": "PageNode",
+            "name": "Page Node",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "innerNodes": {
+        "1bd0acbe-4526-47d7-8d9d-ee185ae32baa": {
+          "_id": "1bd0acbe-4526-47d7-8d9d-ee185ae32baa",
+          "_rev": "410970152",
+          "attributesToCollect": [
+            "mail"
+          ],
+          "identityAttribute": "mail",
+          "validateInputs": false,
+          "required": true,
+          "_type": {
+            "_id": "AttributeCollectorNode",
+            "name": "Attribute Collector",
+            "collection": true,
+            "version": "1.0"
+          },
+          "_outcomes": [
+            {
+              "id": "outcome",
+              "displayName": "Outcome"
+            }
+          ]
+        }
+      },
+      "scripts": {
+        "452a1b7e-fac2-4929-bcdc-a2835af2034a": {
+          "_id": "452a1b7e-fac2-4929-bcdc-a2835af2034a",
+          "name": "ds-send-magiclink-and-suspend",
+          "description": null,
+          "script": "\"/**\\n * @file This script sends a templated magiclink to a user via the IDM's configured email service\\n * using the openidm binding in next-gen scripting\\n * NOTE - The use of SendGrid is not supported in Production and must be changed to your own email service\\n * Steps are here: https://backstage.forgerock.com/docs/idcloud/latest/tenants/email-provider.html#external_smtp_email_server\\n * @version 0.1.0\\n * @keywords email mail magiclink sharedState transientState templateService\\n */\\n\\n/**\\n * Script configuration\\n*/\\nvar config = {\\n\\n    templateID: \\\"changePassword\\\",\\n    idmEndpoint: \\\"external/email\\\",\\n    idmAction: \\\"sendTemplate\\\"\\n};\\n\\n/**\\n * Node outcomes\\n*/\\nvar nodeOutcome = {\\n    SUCCESS: \\\"Success\\\",\\n    FAILED: \\\"Failed\\\"\\n};\\n\\n/**\\n * Send email via the IDM Email Service openidm binding in next-gen scripting\\n * \\n * @param {string} id - _id of user from sharedShare\\n * @param {string} email - mail attribute from sharedState\\n * @param {string} suspendLink - suspendLink containing the transactionId of the back channel journey and suspendId to continue the front channel journey\\n */\\n\\nfunction sendMail(id, email, suspendLink) {\\n  try {\\n    var templateId = config.templateID;\\n    var idmEndpoint = config.idmEndpoint;\\n    var idmAction = config.idmAction;\\n    var identity = idRepository.getIdentity(id);\\n    var givenName = identity.getAttributeValues(\\\"givenName\\\").toArray()[0];\\n    var params = new Object();\\n\\n    params.templateName = templateId;\\n    params.to = email;\\n    params.object = {\\n      \\\"givenName\\\": givenName,\\n      \\\"resumeURI\\\": suspendLink\\n    };\\n\\n    openidm.action(idmEndpoint, idmAction, params);\\n    logger.debug(scriptName + \\\"Email send successfully\\\");\\n    return \\\"true\\\";\\n  }\\n  catch (e) {\\n    //Note script defaults to display user message on screen and does not follow the Failed outcome\\n    logger.error(scriptName + \\\": Failed to call IDM Email endpoint using template. Exception is: \\\" + e);\\n    return \\\"false\\\";\\n  }\\n};\\n\\n/**\\n * Main function\\n */\\n(function () {\\n  logger.error(scriptName + \\\": Node execution started\\\");\\n  var email;\\n  var suspendLink;\\n  var backchannelUrl;\\n\\n  if (!(backchannelUrl = nodeState.get(\\\"backchannel-redirectUri\\\"))) {\\n    logger.error(scriptName + \\\": Unable to get backchannel-redirectUri from sharedState\\\");\\n    action.goTo(nodeOutcome.FAILED);\\n    return;\\n  }\\n\\n  if (!(email = nodeState.get(\\\"objectAttributes\\\").get(\\\"mail\\\"))) {\\n    logger.error(scriptName + \\\": Unable to get mail from the objectAttributes sharedState attribute\\\");\\n    action.goTo(nodeOutcome.FAILED);\\n    return;\\n  }\\n\\n  if (!(id = nodeState.get(\\\"_id\\\"))) {\\n    logger.error(scriptName + \\\": Unable to get _id from sharedState attribute\\\");\\n    action.goTo(nodeOutcome.FAILED);\\n    return;\\n  }\\n  \\n  if (resumedFromSuspend) {\\n    logger.error(scriptName + \\\": Node execution completed.\\\");\\n    action.goTo(nodeOutcome.SUCCESS);\\n  } \\n  \\n  else {\\n    //Send a message to display to the user and the URL to construct resume the journey\\n    action.suspend('If a user account exists, you’ll receive an email with a magic sign-in link. The link is valid for 1 hour.', (resumeUri) => {\\n      suspendLink = backchannelUrl + \\\"&goto=\\\" + encodeURIComponent(resumeUri);\\n      sendMail(id, email, suspendLink);\\n    });\\n  }\\n})();\"",
+          "default": false,
+          "language": "JAVASCRIPT",
+          "context": "AUTHENTICATION_TREE_DECISION_NODE",
+          "createdBy": "id=e36bc873-6971-4af7-9a1c-dbecd11e79eb,ou=user,ou=am-config",
+          "creationDate": 1758896549807,
+          "lastModifiedBy": "id=e36bc873-6971-4af7-9a1c-dbecd11e79eb,ou=user,ou=am-config",
+          "lastModifiedDate": 1759306697238,
+          "evaluatorVersion": "2.0"
+        }
+      },
+      "emailTemplates": {
+        "changePassword": {
+          "_id": "emailTemplate/changePassword",
+          "defaultLocale": "en",
+          "description": "",
+          "displayName": "changePassword",
+          "enabled": true,
+          "from": "",
+          "html": {
+            "en": "<div class=\"content\"><h3 id=\"verifyemailtoupdatepassword\">Verify email to update password</h3><p>Hi {{object.givenName}}</p><p><a href=\"{{object.resumeURI}}\">Update password link</a></p></div>"
+          },
+          "message": {
+            "en": "<html><head></head><body style=\"background-color: #324054; color: #5e6d82; padding: 60px; text-align: center;\"><div class=\"content\" style=\"background-color: #fff; border-radius: 4px; margin: 0 auto; padding: 48px; width: 235px;\"><h3 id=\"verifyemailtoupdatepassword\">Verify email to update password</h3><p>Hi {{object.givenName}}</p><p><a href=\"{{object.resumeURI}}\" style=\"text-decoration: none; color: #109cf1;\">Update password link</a></p></div></body></html>"
+          },
+          "mimeType": "text/html",
+          "styles": "body{background-color:#324054;color:#5e6d82;padding:60px;text-align:center}a{text-decoration:none;color:#109cf1}.content{background-color:#fff;border-radius:4px;margin:0 auto;padding:48px;width:235px}",
+          "subject": {
+            "en": "Update your password"
+          },
+          "templateId": "changePassword"
+        }
+      },
+      "socialIdentityProviders": {},
+      "themes": [],
+      "saml2Entities": {},
+      "circlesOfTrust": {}
+    }
+  }
+}
