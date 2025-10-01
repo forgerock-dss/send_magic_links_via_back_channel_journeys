@@ -2,7 +2,7 @@
   "meta": {
     "origin": "https://openam-<tenant>/platform/?realm=alpha#/journeys/ResetBackChannel",
     "exportedBy": "Ping PS",
-    "exportDate": "2025-10-01T11:34:08.627Z",
+    "exportDate": "2025-10-01T16:16:02.350Z",
     "exportTool": "platform-admin ui tree export",
     "exportToolVersion": "1.0",
     "treesSelectedForExport": [
@@ -28,35 +28,39 @@
         },
         "nodes": {
           "168464e7-baa5-40d2-8cc7-62b0d92869f6": {
+            "x": 479,
+            "y": 181.76666259765625,
             "connections": {
               "outcome": "ae2f6e50-0eb7-4a09-9ebe-e9f788686000"
             },
-            "displayName": "Page Node",
             "nodeType": "PageNode",
-            "x": 479,
-            "y": 181.76666259765625
+            "displayName": "Page Node"
           },
           "ae2f6e50-0eb7-4a09-9ebe-e9f788686000": {
+            "x": 791,
+            "y": 235.76666259765625,
             "connections": {
               "FAILURE": "e301438c-0bd0-429c-ab0c-66126501069a",
               "PATCHED": "70e691a5-1e33-4ac3-a356-e7b6d60d92e0"
             },
-            "displayName": "Patch Object",
             "nodeType": "PatchObjectNode",
-            "x": 791,
-            "y": 235.76666259765625
+            "displayName": "Patch Object"
           },
           "b7c2ec28-88d1-402c-aa04-a5d510b0a85b": {
+            "x": 178,
+            "y": 252.76666259765625,
             "connections": {
               "Next": "168464e7-baa5-40d2-8cc7-62b0d92869f6"
             },
-            "displayName": "Debugger",
             "nodeType": "designer-92e8ad0e3610449890fca904dce9bf3d",
-            "x": 178,
-            "y": 252.76666259765625
+            "displayName": "Debugger"
           }
         },
         "staticNodes": {
+          "startNode": {
+            "x": 50,
+            "y": 250
+          },
           "70e691a5-1e33-4ac3-a356-e7b6d60d92e0": {
             "x": 1233,
             "y": 122
@@ -64,10 +68,6 @@
           "e301438c-0bd0-429c-ab0c-66126501069a": {
             "x": 1189,
             "y": 501
-          },
-          "startNode": {
-            "x": 50,
-            "y": 250
           }
         }
       },
